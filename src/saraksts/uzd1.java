@@ -73,6 +73,18 @@ public class uzd1 {
 				JOptionPane.showMessageDialog(null, str, "Product list", JOptionPane.INFORMATION_MESSAGE);
 			}
 			break;
+		case "4":
+			do {	
+			koAtrast = JOptionPane.showInputDialog(null, "What product to look for in the list?", "Question",
+					JOptionPane.INFORMATION_MESSAGE);
+		} while(!koAtrast.matches("^[\\p{L} ]+$"));
+		
+		JOptionPane.showMessageDialog(null, ((saraksts.indexOf(koAtrast))>-1)?"Product found "+saraksts.indexOf(koAtrast)+". position"
+				: "Product not found in the list!", "Information",
+				JOptionPane.INFORMATION_MESSAGE);
+			break;
+			
+			// Turpināsim
 			}
 		
 		}while(!izvele.equals("0"));
