@@ -32,12 +32,12 @@ public class uzd1 {
 					+ "4 -Find product\n"
 					+ "5 -Add to a specific position\n"
 					+ "6 -Remove product\n"
-					+ "7 -Remove from index"
+					+ "7 -Remove from index\n"
 					+ "8 -Remove first\n"
 					+ "9 -Remove last\n"
 					+ "10 -Change product\n"
 					+ "11 -Sort alphabetically\n"
-					+ "12 -Delete from list\n"
+					+ "12 -Clear the whole list\n"
 					+ "0 -Exit program");
 			
 			if(izvele == null)
@@ -79,28 +79,22 @@ public class uzd1 {
 			koAtrast = JOptionPane.showInputDialog(null, "What product to look for in the list?", "Question",
 					JOptionPane.INFORMATION_MESSAGE);
 		} while(!koAtrast.matches("^[\\p{L} ]+$"));
-		
-		JOptionPane.showMessageDialog(null, ((saraksts.indexOf(koAtrast))>-1)?"Product found "+saraksts.indexOf(koAtrast)+". position"
+			
+			koAtrast.toLowerCase();
+			
+		JOptionPane.showMessageDialog(null, ((saraksts.indexOf(koAtrast.toLowerCase()))>-1)?"Product found "+saraksts.indexOf(koAtrast.toLowerCase())+". position"
 				: "Product not found in the list!", "Information",
 				JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
 		case "5":
 			do {
-				koPievienot =
-						JOptionPane.showInputDialog("What product to add?");
-				kurPievienot = Integer.parseInt(
-								JOptionPane.showInputDialog("In which position to add?"));
+				koPievienot = JOptionPane.showInputDialog("What product to add?");
+				kurPievienot = Integer.parseInt(JOptionPane.showInputDialog("In what position? (0 - "+saraksts.size()+")"));
 				
-				
-				// Nodrošināt to, ka nevar pievienot pa tālu vai pa tuvu
-			} while((jauEksiste(saraksts, koPievienot) == true) || 
-					!koPievienot.matches("^[\\p{L} ]+$") ||
-					kurPievienot > saraksts.size() ||
-					kurPievienot < 0);
-			saraksts.add(kurPievienot-1, koPievienot);
-			JOptionPane.showMessageDialog(null, "Product added to the list!", "Information",
-					JOptionPane.INFORMATION_MESSAGE);
+			}while((jauEksiste(saraksts, koPievienot) == true) || !koPievienot.matches("^[\\p{L} ]+$") || kurPievienot > saraksts.size() || kurPievienot < 0);
+			
+			saraksts.add(kurPievienot, koPievienot);
 			break;
 			
 		case "6":
@@ -122,17 +116,21 @@ public class uzd1 {
 			kurNonemt = Integer.parseInt(
 					JOptionPane.showInputDialog("What position to remove?"));
 			}while(kurNonemt < 0 || kurNonemt >= saraksts.size());
-//					if(saraksts.remove(kurNonemt).equals(saraksts))
+					if(saraksts.remove(kurNonemt).equals(saraksts))
 					JOptionPane.showMessageDialog(null,
 							"Product removed!", "Information",
 							JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
 		case "8":
+			JOptionPane.showMessageDialog(null, "First product is removed from the list!", "Information",
+					JOptionPane.WARNING_MESSAGE);
 			saraksts.removeFirst();
 			break;
 			
 		case "9":
+			JOptionPane.showMessageDialog(null, "Last product is removed from the list!", "Information",
+					JOptionPane.WARNING_MESSAGE);
 			saraksts.removeLast();
 			break;
 			
@@ -164,7 +162,7 @@ public class uzd1 {
 			
 			default:
 				JOptionPane.showMessageDialog(null,
-						"Šāda darbība nepastāv!", "Warning",
+						"This option doesn't exist!", "Warning",
 						JOptionPane.WARNING_MESSAGE);
 			}
 		
