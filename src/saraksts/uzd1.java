@@ -82,7 +82,7 @@ public class uzd1 {
 			
 			koAtrast.toLowerCase();
 			
-		JOptionPane.showMessageDialog(null, ((saraksts.indexOf(koAtrast.toLowerCase()))>-1)?"Product found "+saraksts.indexOf(koAtrast.toLowerCase())+". position"
+		JOptionPane.showMessageDialog(null, ((saraksts.indexOf(koAtrast.toLowerCase()))>-1)?"Product found in index"+saraksts.indexOf(koAtrast.toLowerCase())+". position"
 				: "Product not found in the list!", "Information",
 				JOptionPane.INFORMATION_MESSAGE);
 			break;
@@ -123,15 +123,19 @@ public class uzd1 {
 			break;
 			
 		case "8":
+			if(!saraksts.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "First product is removed from the list!", "Information",
 					JOptionPane.WARNING_MESSAGE);
 			saraksts.removeFirst();
+			}
 			break;
 			
 		case "9":
+			if(!saraksts.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Last product is removed from the list!", "Information",
 					JOptionPane.WARNING_MESSAGE);
 			saraksts.removeLast();
+			}
 			break;
 			
 		case "10":
