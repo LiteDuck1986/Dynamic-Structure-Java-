@@ -1,5 +1,6 @@
 package saraksts;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.regex.Pattern;
 
@@ -105,7 +106,10 @@ public class Biblioteka {
 		LinkedList<Gramata> plaukts = new LinkedList<>();
 		String[] darbibas = {"Pievienot grāmatu",
 				"Noņemt grāmatu", "Apskatīt grāmatu",
-				"Iznomāt grāmatu", "Apturēt"};
+				"Iznomāt grāmatu", "Atdot grāmatu", "Apturēt"};
+		
+		LinkedList<Gramata> panemtaGramata = new LinkedList<>();
+		
 		
 		do {
 			izvelne = (String)JOptionPane.showInputDialog(null,
@@ -222,8 +226,26 @@ public class Biblioteka {
 								"Meklētā grāmata nemaz plauktā neatrodas!",
 								"Brīdinājums", JOptionPane.WARNING_MESSAGE);
 					
-					else 
+					else {
 						plaukts.get(indekss).panemtGramatu();
+						panemtaGramata.add(plaukts.get(indekss));
+					// Uzglabāt paņemto grāmatu linkedList
+					}
+				}
+				break;
+				// Ieviest jaunu iespēju, izvēlēties, no paņemtām grāmatām, kuru tu vēlies atgriezt.
+			case "Atdot grāmatu":
+				if(panemtaGramata.size() == 0)
+					JOptionPane.showMessageDialog(null, "Jums nav iznomāta grāmata", "Paziņojums",
+							JOptionPane.INFORMATION_MESSAGE);
+				
+				else {
+					Iterator<Gramata> izvade = panemtaGramata.iterator();
+					String str = "";
+					while(izvade.hasNext()) {
+						str += izvade.next()+"\n";
+					}
+					JOptionPane.showMessageDialog(null, str, "Paņemtās grāmatas saraksts", JOptionPane.INFORMATION_MESSAGE);
 				}
 				break;
 				
