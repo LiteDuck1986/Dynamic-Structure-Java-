@@ -78,6 +78,15 @@ public class Biblioteka {
 		}
 		
 	}
+	
+	static int meklet(LinkedList<Gramata> saraksts, String nosaukums) {
+		for(int i=0; i<saraksts.size(); i++) {
+			if(saraksts.get(i).getNosaukums().equalsIgnoreCase(nosaukums))
+				return i;
+		}
+		
+		return -1;
+	}
 
 	public static void main(String[] args) {
 		String nosaukums, autors, izdevnieciba, izvelne;
@@ -130,7 +139,32 @@ public class Biblioteka {
 						cena));
 				break;
 				
+			case "Noņemt grāmatu":
+				if(plaukts.isEmpty())
+					JOptionPane.showMessageDialog(null,
+							"Nav plauktā neviena grāmata!", "Brīdinājums",
+							JOptionPane.WARNING_MESSAGE);
 				
+				else {
+					nosaukums = virknesParbaude("Kā sauc grāmatu, kuru vēlies noņemt", "Baltā grāmata");
+				if(nosaukums == null)
+					break;
+				
+				indekss = meklet(plaukts, nosaukums);
+				if(indekss == -1)
+					JOptionPane.showMessageDialog(null,
+							"Meklētā grāmata nemaz plauktā neatrodas!",
+							"Brīdinājums", JOptionPane.WARNING_MESSAGE);
+				
+				else {
+					plaukts.remove(indekss);
+					JOptionPane.showMessageDialog(null,
+							"Grāmata dzēsta!", "Paziņojums",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				}
+				break;
 			}
 			
 		} while(!izvelne.equals("Apturēt"));
