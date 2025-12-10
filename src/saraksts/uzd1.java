@@ -53,6 +53,8 @@ public class uzd1 {
 			saraksts.add(koPievienot.toLowerCase());
 			JOptionPane.showMessageDialog(null, "Product added to the list!", "Information",
 					JOptionPane.INFORMATION_MESSAGE);
+			
+				
 			break;
 			
 		case "2":
@@ -128,6 +130,10 @@ public class uzd1 {
 					JOptionPane.WARNING_MESSAGE);
 			saraksts.removeFirst();
 			}
+			else if(saraksts.isEmpty()){
+				JOptionPane.showMessageDialog(null, "The list is empty, cannot remove the first product!", "Information",
+						JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 			
 		case "9":
@@ -135,6 +141,11 @@ public class uzd1 {
 			JOptionPane.showMessageDialog(null, "Last product is removed from the list!", "Information",
 					JOptionPane.WARNING_MESSAGE);
 			saraksts.removeLast();
+			}
+			
+			else if(saraksts.isEmpty()){
+				JOptionPane.showMessageDialog(null, "The list is empty, cannot remove the last product!", "Information",
+						JOptionPane.WARNING_MESSAGE);
 			}
 			break;
 			
