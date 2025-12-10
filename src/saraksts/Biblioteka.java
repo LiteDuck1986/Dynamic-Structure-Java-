@@ -87,6 +87,16 @@ public class Biblioteka {
 		
 		return -1;
 	}
+	
+	static boolean jauEksiste(LinkedList<Gramata> saraksts, String elements) {
+		for(int i=0; i<saraksts.size(); i++) {
+			if(saraksts.get(i).getNosaukums().equalsIgnoreCase(elements)) {
+				JOptionPane.showMessageDialog(null, "Tāda grāmata jau ir bibliotēkā!", "Brīdinājums", JOptionPane.WARNING_MESSAGE);
+				return true;
+				}
+			}
+		return false;
+	}
 
 	public static void main(String[] args) {
 		String nosaukums, autors, izdevnieciba, izvelne;
@@ -108,10 +118,13 @@ public class Biblioteka {
 			
 			switch(izvelne) {
 			case "Pievienot grāmatu":
+				do {
 				nosaukums = virknesParbaude("Ieraksti grāmatas nosaukumu", "Zaļā pasaka");
 				
 				if(nosaukums == null)
 					break;
+				// Pārbaudīt vai tāda grāmata jau nav ielikta plauktā
+			}while((jauEksiste(plaukts, nosaukums) == true) || !nosaukums.matches("^[\\p{L} ]+$"));
 				
 				autors = virknesParbaude("Ieraksti grāmatas autoru", "Henrijs Zaļais");
 				
@@ -164,6 +177,60 @@ public class Biblioteka {
 				}
 				
 				}
+				break;
+				
+			case "Apskatīt grāmatu":
+				if(plaukts.isEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							"Nav plauktā neviena grāmata!",
+							"Brīdinājums", JOptionPane.WARNING_MESSAGE);
+				}
+
+				else {
+				nosaukums = virknesParbaude(
+						"Kuru grāmatu aplūkot?", "Zaļā pasaka");
+				if(nosaukums == null)
+					break;
+				
+				indekss = meklet(plaukts, nosaukums);
+				if(indekss == -1)
+					JOptionPane.showMessageDialog(null,
+							"Meklētā grāmata nemaz plauktā neatrodas!",
+							"Brīdinājums", JOptionPane.WARNING_MESSAGE);
+				
+				else 
+					plaukts.get(indekss).info();
+					
+				}
+				break;
+				
+			case "Iznomāt grāmatu":
+				if(plaukts.isEmpty())
+					JOptionPane.showMessageDialog(null,
+							"Nav plauktā neviena grāmata!", "Brīdinājums",
+							JOptionPane.WARNING_MESSAGE);
+				
+				else {
+					nosaukums = virknesParbaude(
+							"Kuru grāmatu iznomāt?", "Zaļā pasaka");
+					if(nosaukums == null)
+						break;
+					
+					indekss = meklet(plaukts, nosaukums);
+					if(indekss == -1)
+						JOptionPane.showMessageDialog(null,
+								"Meklētā grāmata nemaz plauktā neatrodas!",
+								"Brīdinājums", JOptionPane.WARNING_MESSAGE);
+					
+					else 
+						plaukts.get(indekss).panemtGramatu();
+				}
+				break;
+				
+			case "Apturēt":
+				JOptionPane.showMessageDialog(null,
+						"Programma tika apturēta!", "Paziņojums",
+						JOptionPane.WARNING_MESSAGE);
 				break;
 			}
 			
