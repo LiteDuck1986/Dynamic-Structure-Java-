@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class Biblioteka {
-	static String virknesParbaude(String zinojums, String nokl) {
+	public static String virknesParbaude(String zinojums, String nokl) {
 		String ievade;
 		
 		do {
