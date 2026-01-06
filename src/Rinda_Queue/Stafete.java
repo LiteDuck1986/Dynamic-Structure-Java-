@@ -88,14 +88,20 @@ public class Stafete {
 					int B = komandaB.peek();
 					
 					if(A > B) {
-						
+						JOptionPane.showMessageDialog(null,
+								iteracija+". iterācijā A komanda uzvarēja!", "Sacensības",
+								JOptionPane.INFORMATION_MESSAGE);
+						komandaB.poll();
 					}else if(A < B) {
-						
+						JOptionPane.showMessageDialog(null,
+								iteracija+". iterācijā B komanda uzvarēja!", "Sacensības",
+								JOptionPane.INFORMATION_MESSAGE);
+						komandaA.poll();
 					}else
 						JOptionPane.showMessageDialog(null,
-								"Neizšķirts abas puses zaudēju "+iteracija+".", "Sacensības",
+								"Neizšķirts abas puses zaudēju "+iteracija+". iterāciju!", "Sacensības",
 								JOptionPane.INFORMATION_MESSAGE);
-//					break;
+					break;
 				
 				}else
 					JOptionPane.showMessageDialog(null,
