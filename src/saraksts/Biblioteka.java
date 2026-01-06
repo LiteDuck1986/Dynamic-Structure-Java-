@@ -22,7 +22,7 @@ public class Biblioteka {
 		return ievade;
 	}
 	
-	static int skaitlaParbaude(String zinojums, int tips) {
+	public static int skaitlaParbaude(String zinojums, int tips) {
 		String ievade;
 		int skaitlis;
 		
