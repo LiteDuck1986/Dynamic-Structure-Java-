@@ -77,10 +77,47 @@ public class Pasts {
 					JOptionPane.showMessageDialog(null,
 							"Pirms tevis stāv " + kartasNr + " cilvēki.", "Informacija", JOptionPane.INFORMATION_MESSAGE);
 					
-				}else
+				else
 					JOptionPane.showMessageDialog(null,
 							"Nemānies, Tu nemaz rindā nestāvi!", "Brīdinājums", JOptionPane.WARNING_MESSAGE);
+					
+			}else
+				JOptionPane.showMessageDialog(null,
+						"Rindā neviens nestāv!", "Tukša rinda", JOptionPane.WARNING_MESSAGE);
 				
+				break;
+				
+			case "Aplūkot visus rindā stāvošos":
+				if(!rinda.isEmpty()) {
+					String virkne = "";
+					kartasNr = 1;
+					for(String persona : rinda) {
+						virkne += kartasNr+". "+persona+"\n";
+						kartasNr++;
+					}
+					JOptionPane.showMessageDialog(null,
+							"Rindā stāv:\n"+virkne, "cilvēki",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+				}else
+					JOptionPane.showMessageDialog(null,
+							"Rindā neviens nestāv!", "Tukša rinda", JOptionPane.WARNING_MESSAGE);
+				break;
+				
+			case "Apkalpot pirmo":
+				if(!rinda.isEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							rinda.poll()+" tika apkalpots", "Apkalpošana", JOptionPane.INFORMATION_MESSAGE);
+							
+				}else
+					JOptionPane.showMessageDialog(null,
+							"Rindā neviens nestāv!", "Tukša rinda", JOptionPane.WARNING_MESSAGE);
+				break;
+				
+			case "Apturēt":
+				JOptionPane.showMessageDialog(null,
+						"Programma apturēta", "Paziņojums",
+						JOptionPane.WARNING_MESSAGE);
 				break;
 			}
 			
