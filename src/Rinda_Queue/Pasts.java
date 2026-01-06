@@ -44,6 +44,44 @@ public class Pasts {
 				else
 					JOptionPane.showMessageDialog(null,
 							"Rindā neviens nestāv!", "Tukša rinda", JOptionPane.WARNING_MESSAGE);
+				break;
+				
+			case "Noteikt rindas garumu":
+				if(!rinda.isEmpty())
+					JOptionPane.showMessageDialog(null,
+							"Rindā stāvošo skaits: " + rinda.size(), "Informacija", JOptionPane.INFORMATION_MESSAGE);
+					
+				else
+					JOptionPane.showMessageDialog(null,
+							"Rindā neviens nestāv!", "Tukša rinda", JOptionPane.WARNING_MESSAGE);
+				break;
+				
+			case "Cik pirms manis?":
+				if(!rinda.isEmpty()) {
+					cilveks = Biblioteka.virknesParbaude("Kā sauc cilvēku?", "Jānis");
+					
+					if(cilveks == null)
+						break;
+					
+					kartasNr = 0;
+					boolean atrasts = false;
+					for(String persona : rinda) {
+						if(cilveks.equalsIgnoreCase(persona)) {
+							atrasts = true;
+							break;
+						}
+						kartasNr++;
+					}
+					
+					if(atrasts)
+					JOptionPane.showMessageDialog(null,
+							"Pirms tevis stāv " + kartasNr + " cilvēki.", "Informacija", JOptionPane.INFORMATION_MESSAGE);
+					
+				}else
+					JOptionPane.showMessageDialog(null,
+							"Nemānies, Tu nemaz rindā nestāvi!", "Brīdinājums", JOptionPane.WARNING_MESSAGE);
+				
+				break;
 			}
 			
 		} while(!izvelne.equals("Apturēt"));
