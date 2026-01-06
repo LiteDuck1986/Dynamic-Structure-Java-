@@ -1,18 +1,25 @@
 package Rinda_Queue;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.swing.JOptionPane;
+
 import saraksts.Biblioteka;
 
 public class Pasts {
-
+	// Ieviest cilveka objektus
+	// un pievienot tiem atribūtus: vārds, rindasId, darbiba
+	//
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String izvelne, cilveks = null;
 		int kartasNr;
 		Queue<String> rinda = new LinkedList<>();
+		
+		ArrayList<Cilveks> CilvekuMasivs = new ArrayList<>();
+		Cilveks cilv = null;
 		
 		String[] darbibas = {"Nostāties rindā", "Apskatīt pirmo rindā stāvošo", "Noteikt rindas garumu", "Cik pirms manis?",
 			"Aplūkot visus rindā stāvošos", "Apkalpot pirmo", "Apturēt"};
@@ -27,6 +34,7 @@ public class Pasts {
 			switch(izvelne) {
 			case "Nostāties rindā":
 				cilveks = Biblioteka.virknesParbaude("Kā sauc cilvēku?", "Jānis");
+				cilv.setVards(cilveks);
 				
 				if(cilveks == null)
 					break;
