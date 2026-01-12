@@ -50,6 +50,27 @@ public class Loterija {
 				JOptionPane.INFORMATION_MESSAGE);
 		saktaIzloze = true;
 	}
+	
+	public static void salidzinat() {
+		Queue<Integer> sakrit = new LinkedList<Integer>();
+		int kurs;
+		
+		for(int i=0; i<bilete.size(); i++) {
+			kurs = laimigie.peek();
+			if(bilete.contains(laimigie.remove()))
+				sakrit.add(kurs);
+		}
+		
+		JOptionPane.showMessageDialog(null, "Tavā biļetē ir "+
+		sakrit+" laimējušie skaitļi:\n"+sakrit,
+		"Salīdzinājums", JOptionPane.INFORMATION_MESSAGE);
+		
+		cipari.clear();
+		bilete.clear();
+		laimigie.clear();
+		sakrit.clear();
+		saktaIzloze = false;
+	}
 
 	public static void main(String[] args) {
 		
@@ -61,11 +82,11 @@ public class Loterija {
 					+ "3 -Apturēt", "Izvēlne", JOptionPane.QUESTION_MESSAGE);
 			
 			if(izvelne == null)
-				izvelne = "Apturēt";
+				izvelne = "3";
 			
 			switch(izvelne) {
 			case "1":
-				if(!saktaIzloze )
+				if(!saktaIzloze)
 					saktIzlozi();
 				
 				else
@@ -75,11 +96,19 @@ public class Loterija {
 				break;
 				
 			case "2":
+				if(saktaIzloze)
+					salidzinat();
 				
+				else
+					JOptionPane.showMessageDialog(null,
+							"Izloze vēl nav notikusi!", "Brīdinājums",
+							JOptionPane.WARNING_MESSAGE);
 				break;
 				
 			case "3":
-				
+				JOptionPane.showMessageDialog(null,
+						"Programma apturēta!", "Brīdinājums",
+						JOptionPane.WARNING_MESSAGE);
 				break;
 				
 			default:
